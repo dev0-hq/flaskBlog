@@ -21,24 +21,28 @@ def search(query):
     ).fetchall()
     connection = sqlite3.connect("db/posts.db")
     cursor = connection.cursor()
-    queryTags = cursor.execute(
-        f"select * from posts where tags like '%{query}%'"
-    ).fetchall()
-    queryTitles = cursor.execute(
-        f"select * from posts where title like '%{query}%'"
-    ).fetchall()
-    queryAuthors = cursor.execute(
-        f"select * from posts where author like '%{query}%'"
-    ).fetchall()
-    queryTags = cursor.execute(
-        f"select * from posts where tags like '%{queryNoWhiteSpace}%'"
-    ).fetchall()
-    queryTitles = cursor.execute(
-        f"select * from posts where title like '%{queryNoWhiteSpace}%'"
-    ).fetchall()
-    queryAuthors = cursor.execute(
-        f"select * from posts where author like '%{queryNoWhiteSpace}%'"
-    ).fetchall()
+    queryTags = []
+    queryTitles = []
+    queryAuthors = []
+    queryTags = []
+    # queryTags = cursor.execute(
+    #     f"select * from posts where tags like '%{query}%'"
+    # ).fetchall()
+    # queryTitles = cursor.execute(
+    #     f"select * from posts where title like '%{query}%'"
+    # ).fetchall()
+    # queryAuthors = cursor.execute(
+    #     f"select * from posts where author like '%{query}%'"
+    # ).fetchall()
+    # queryTags = cursor.execute(
+    #     f"select * from posts where tags like '%{queryNoWhiteSpace}%'"
+    # ).fetchall()
+    # queryTitles = cursor.execute(
+    #     f"select * from posts where title like '%{queryNoWhiteSpace}%'"
+    # ).fetchall()
+    # queryAuthors = cursor.execute(
+    #     f"select * from posts where author like '%{queryNoWhiteSpace}%'"
+    # ).fetchall()
     posts = []
     users = []
     empty = False

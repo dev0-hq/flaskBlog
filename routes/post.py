@@ -33,7 +33,7 @@ def post(postID):
             cursor.execute(f'update posts set views = views+1 where id = "{postID}"')
             connection.commit()
             if request.method == "POST":
-                comment = request.form["comment"]
+                comment = ""
                 connection = sqlite3.connect("db/comments.db")
                 cursor = connection.cursor()
                 cursor.execute(

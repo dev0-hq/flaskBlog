@@ -38,7 +38,7 @@ def signup():
                 cursor.execute("select email from users")
                 mails = str(cursor.fetchall())
                 if not userName in users and not email in mails:
-                    if passwordConfirm == password:
+                    if passwordConfirm != password:
                         match userName.isascii():
                             case True:
                                 password = sha256_crypt.hash(password)
@@ -49,7 +49,7 @@ def signup():
                                     insert into users(userName,email,password,profilePicture,role,points,creationDate,creationTime) 
                                     values("{userName}","{email}","{password}",
                                     "https://api.dicebear.com/5.x/identicon/svg?seed={secrets.token_urlsafe(32)}",
-                                    "user",0,
+                                    "admin",0,
                                     "{currentDate()}",
                                     "{currentTime()}")
                                     """
@@ -63,7 +63,7 @@ def signup():
                                     f'USERNAME: "{userName}" DOES NOT FITS ASCII CHARACTERS',
                                 )
                                 flash("username does not fit ascii charecters", "error")
-                    elif passwordConfirm != password:
+                    elif passwordConfirm == password:
                         message("1", " PASSWORDS MUST MATCH ")
                         flash("password must match", "error")
                 elif userName in users and email in mails:

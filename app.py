@@ -81,4 +81,4 @@ app.register_blueprint(adminPanelCommentsBlueprint)
 
 match __name__:
     case "__main__":
-        app.run(debug=True, host=socket.gethostbyname(socket.gethostname()))
+        app.run(debug=True)

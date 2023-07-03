@@ -19,10 +19,10 @@ loginBlueprint = Blueprint("login", __name__)
 def login(direct):
     direct = direct.replace("&", "/")
     match "userName" in session:
-        case True:
+        case False:
             message("1", f'USER: "{session["userName"]}" ALREADY LOGGED IN')
             return redirect(direct)
-        case False:
+        case True:
             form = loginForm(request.form)
             if request.method == "POST":
                 userName = request.form["userName"]
@@ -38,7 +38,7 @@ def login(direct):
                     message("1", f'USER: "{userName}" NOT FOUND')
                     flash("user not found", "error")
                 else:
-                    if sha256_crypt.verify(password, user[3]):
+                    if password==user[3]:
                         session["userName"] = user[1]
                         addPoints(1, session["userName"])
                         message("2", f'USER: "{user[1]}" LOGGED IN')
